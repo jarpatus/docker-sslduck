@@ -9,11 +9,11 @@ services:
       - ./data:/etc/letsencrypt
       - ./log:/var/log/letsencrypt
     environment:
+      - UID=1234
+      - GID=1234
       - DDNS_PROVIDER=duckdns
       - DUCKDNS_DOMAIN=x.duckdns.org
       - DUCKDNS_TOKEN=x
       - LETSENCRYPT_DOMAIN=x.duckdns.org
-      - UID=1234
-      - GID=1234
     network_mode: bridge
     restart: unless-stopped

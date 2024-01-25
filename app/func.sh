@@ -4,7 +4,6 @@ get_cert() {
   certbot certonly \
     --manual \
     --non-interactive \
-    --test-cert \
     --agree-tos \
     --register-unsafely-without-email \
     --preferred-challenges dns \
