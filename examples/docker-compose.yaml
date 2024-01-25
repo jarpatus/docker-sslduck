@@ -15,4 +15,5 @@ services:
       - LETSENCRYPT_DOMAIN=x.duckdns.org
       - UID=1234
       - GID=1234
+    network_mode: bridge
     restart: unless-stopped
