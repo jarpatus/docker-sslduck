@@ -11,6 +11,7 @@ docker-compose build
 ```
 
 ## Environment variables
+Mandatory environment variables:
 * ```DDNS_PROVIDER``` - Dynamic DNS provider, at the moment only "duckdns" is supported.
 * ```DUCKDNS_DOMAIN``` - Duck DNS domain.
 * ```DUCKDNS_TOKEN``` - Duck DNS token.
@@ -18,6 +19,18 @@ docker-compose build
 * ```UID``` - UID for certbot user.
 * ```GID``` - GID for certbot group.
 
+Optional environment variables:
+* ```CERTBOT_CERTONLY_ARGS``` - Command line arguments for cerbot certonly command.
+* ```CERTBOT_RENEW_ARGS``` - Command line arguments for cerbot renew command.
+
 ## Mounts
-You should use volumes or bind mounts for all following folders:
+Mandatory mounts:
 * ```/etc/letsencrypt``` - Certbot configuration like certificates etc, to be preserved on container restarts 
+
+Optional mounts:
+* ```/var/log/letsencrypt``` - Certbot logs.
+
+## Considerations 
+* DUCKDNS_DOMAIN should be your DuckDNS domain i.e. x.duckdns.org, LETSENCRYPT_DOMAIN can be the same or then you can request certificate for subdomain i.e. y.x.duckdns.org or even wildcard domain i.e. *.x.duckdns.org (multiple domains are not supported at the moment). DUCKDNS_TOKEN can be retrieved from DuckDNS web site.
+* UID and GID are needed because container runs certbot as non-root user, just in case. You can use existing user from docker host or in example some post-65536 values. Conincidentally certificates and private keys generated are owned by the same user and group so if you run other docker non-root container which consume certificates then UID and GID should be synchronized.
+* CERTBOT_CERTONLY_ARGS and CERTBOT_RENEW_ARGS can be used to add command line arguments for certbot, i.e. --test-cert could be added if you just want to get (untrusted) test certificate.
