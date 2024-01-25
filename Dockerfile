@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 # Add packages
-RUN apk add --no-cache certbot curl libcap
+RUN apk add --no-cache certbot curl
 
 # Copy application files to /app
 COPY ./app /app

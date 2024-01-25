@@ -10,7 +10,7 @@ echo Command: ${CMD}
 echo Response: ${RES}
 
 # Wait for update to be propagated
-sleep 60
+sleep 5
 
 # Check if succeeded
 test "${RES}" = "OK"
