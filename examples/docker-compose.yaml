@@ -1,0 +1,18 @@
+version: '2.4'
+
+services:
+  sslduck:
+    build:
+      context: src
+    container_name: sslduck
+    volumes:
+      - ./data:/etc/letsencrypt
+      - ./log:/var/log/letsencrypt
+    environment:
+      - DDNS_PROVIDER=duckdns
+      - DUCKDNS_DOMAIN=x.duckdns.org
+      - DUCKDNS_TOKEN=x
+      - LETSENCRYPT_DOMAIN=x.duckdns.org
+      - UID=1234
+      - GID=1234
+    restart: unless-stopped
