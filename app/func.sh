@@ -1,7 +1,12 @@
 #!/bin/sh
 
+on_term() {
+  echo Killed, exiting...
+  exit 1
+}
+
 get_cert() {
-  sudo -E -u certbot certbot certonly \
+  certbot certonly \
     --manual \
     --non-interactive \
     --test-cert \
@@ -12,14 +17,18 @@ get_cert() {
     --manual-cleanup-hook /app/${DDNS_PROVIDER}/cleanup.sh \
     --post-hook /app/post.sh \
     --domains $LETSENCRYPT_DOMAIN \
-    ${CERTBOT_CERTONLY_ARGS}
+    ${CERTBOT_CERTONLY_ARGS} &
+  wait $!
 }
 
 renew_cert() {
-  sudo -E -u certbot certbot renew \
-    ${CERTBOT_RENEW_ARGS}
+  sleep $((1 + RANDOM % 10)) &
+  wait $!
+  certbot renew ${CERTBOT_RENEW_ARGS} &
+  wait $!
 }
 
 update_ip() {
-  sudo -E -u certbot /app/${DDNS_PROVIDER}/update.sh
+  /app/${DDNS_PROVIDER}/update.sh &
+  wait $!
 }

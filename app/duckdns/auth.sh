@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Update Duck DNS challenge record
-CMD="curl --silent ${DUCKDNS_AUTH_ARGS} https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}"
+CMD="curl --silent https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}"
 RES=`${CMD}`
 
 # Output some debugging
