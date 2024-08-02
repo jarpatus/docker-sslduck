@@ -7,8 +7,8 @@ get_cert() {
     --agree-tos \
     --register-unsafely-without-email \
     --preferred-challenges dns \
-    --manual-auth-hook /app/${DDNS_PROVIDER}/auth.sh \
-    --manual-cleanup-hook /app/${DDNS_PROVIDER}/cleanup.sh \
+    --manual-auth-hook /app/provider/${DDNS_PROVIDER}/auth \
+    --manual-cleanup-hook /app/provider/${DDNS_PROVIDER}/cleanup \
     --post-hook /app/post.sh \
     --domains $LETSENCRYPT_DOMAIN \
     ${CERTBOT_CERTONLY_ARGS}
@@ -20,5 +20,6 @@ renew_cert() {
 }
 
 update_ip() {
-  /app/${DDNS_PROVIDER}/update.sh
+  export IP=`curl --silent https://api.ipify.org`
+  /app/provider/${DDNS_PROVIDER}/update
 }

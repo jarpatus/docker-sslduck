@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+import os
+import ovh
+import time
+
+# Create OVH client
+client = ovh.Client(
+  endpoint=os.getenv('OVH_API_SERVER'),
+  application_key=os.getenv('OVH_APP_KEY'),
+  application_secret=os.getenv('OVH_APP_SECRET'),
+  consumer_key=os.getenv('OVH_CONSUMER_KEY'),
+)
+
+# Create challenge record
+print('Create', os.getenv('OVH_SUBDOMAIN')+'.'+os.getenv('OVH_ZONE'), 'challenge record:', os.getenv('CERTBOT_VALIDATION'))
+response = client.post('/domain/zone/'+os.getenv('OVH_ZONE')+'/record',
+  fieldType='TXT',
+  subDomain='_acme-challenge.'+os.getenv('OVH_SUBDOMAIN'),
+  target=os.getenv('CERTBOT_VALIDATION'),
+  ttl=60
+)
+print('Response:', response)
+client.post('/domain/zone/'+os.getenv('OVH_ZONE')+'/refresh')
+
+# Wait for update to be propagated
+time.sleep(90)
+
+# Check if succeeded
+#test "${RES}" = "OK"
+exit(0)

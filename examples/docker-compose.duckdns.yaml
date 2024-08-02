@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3'
 
 services:
   sslduck:
@@ -8,6 +8,7 @@ services:
     volumes:
       - ./data:/etc/letsencrypt
       - ./log:/var/log/letsencrypt
+    restart: unless-stopped
     environment:
       - UID=1234
       - GID=1234
@@ -16,4 +17,3 @@ services:
       - DUCKDNS_TOKEN=x
       - LETSENCRYPT_DOMAIN=x.duckdns.org
     network_mode: bridge
-    restart: unless-stopped

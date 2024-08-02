@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+import os
+import ovh
+
+# Create OVH client
+client = ovh.Client(
+  endpoint=os.getenv('OVH_API_SERVER'),
+  application_key=os.getenv('OVH_APP_KEY'),
+  application_secret=os.getenv('OVH_APP_SECRET'),
+  consumer_key=os.getenv('OVH_CONSUMER_KEY'),
+)
+
+# Get challenge record(s)
+print('Get', os.getenv('OVH_SUBDOMAIN')+'.'+os.getenv('OVH_ZONE'), 'challenge records')
+response = client.get('/domain/zone/'+os.getenv('OVH_ZONE')+'/record',
+  fieldType='TXT',
+  subDomain='_acme-challenge.'+os.getenv('OVH_SUBDOMAIN')
+)
+print('Response:', response)
+
+# Delete challenge record(s)
+for id in response:
+  print('Delete', os.getenv('OVH_SUBDOMAIN')+'.'+os.getenv('OVH_ZONE'), 'challenge record', id)
+  response = client.delete('/domain/zone/'+os.getenv('OVH_ZONE')+'/record/'+str(id))
+  print('Response:', response)
+client.post('/domain/zone/'+os.getenv('OVH_ZONE')+'/refresh')
+
+# Check if succeeded
+#test "${RES}" = "OK"
+exit(0)

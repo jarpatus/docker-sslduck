@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  sslduck:
+    build:
+      context: src
+    container_name: sslduck
+    volumes:
+      - ./data:/etc/letsencrypt
+      - ./log:/var/log/letsencrypt
+    restart: unless-stopped
+    environment:
+      - UID=1234
+      - GID=1234
+      - DDNS_PROVIDER=ovh
+      - OVH_API_SERVER=ovh-xx
+      - OVH_APP_KEY=xxxxxxxxxxxxxxxx
+      - OVH_APP_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - OVH_CONSUMER_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - OVH_ZONE=example.com
+      - OVH_SUBDOMAIN=subdomain
+      - LETSENCRYPT_DOMAIN=subdomain.example.com
+    network_mode: bridge

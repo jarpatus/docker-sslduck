@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Add ovh python package
+if ! pip show ovh > /dev/null; then
+  pip install ovh
+fi

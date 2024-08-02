@@ -10,6 +10,11 @@ fi
 mkdir -p /var/lib/letsencrypt
 chown -R $UID:$GID /etc/letsencrypt /var/lib/letsencrypt /var/log/letsencrypt
 
+# Run provider specific init script
+if [ -f /app/provider/${DDNS_PROVIDER}/init ]; then
+  /app/provider/${DDNS_PROVIDER}/init
+fi
+
 # Trap SIGTERM so we can exit gracefully on container stop
 on_term() {
   echo Killed, exiting...
