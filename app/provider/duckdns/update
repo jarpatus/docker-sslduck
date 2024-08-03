@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Update IP
-echo Update ${DUCKDNS_DOMAIN} IP...
-CMD="curl --silent https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&ip="
+echo Update ${DDNS_DOMAIN} IP...
+CMD="curl --silent https://www.duckdns.org/update?domains=${DDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&ip="
 RES=`${CMD}`
 echo Command: ${CMD}
 echo Response: ${RES}

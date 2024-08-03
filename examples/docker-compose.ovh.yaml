@@ -13,6 +13,7 @@ services:
       - UID=1234
       - GID=1234
       - DDNS_PROVIDER=ovh
+      - DDNS_DOMAIN=subdomain.example.com
       - OVH_API_SERVER=ovh-xx
       - OVH_APP_KEY=xxxxxxxxxxxxxxxx
       - OVH_APP_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -19,7 +19,22 @@ renew_cert() {
   certbot renew ${CERTBOT_RENEW_ARGS}
 }
 
+get_dns_ip() {
+  export DNS_IP=`dig +short ${DDNS_DOMAIN}`
+  echo DNS IP: ${DNS_IP}
+}
+
+get_ext_ip() {
+  export EXT_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+  echo External IP: ${EXT_IP}
+}
+
 update_ip() {
-  export IP=`curl --silent https://api.ipify.org`
-  /app/provider/${DDNS_PROVIDER}/update
+  get_dns_ip
+  get_ext_ip
+  if [ "${DNS_IP}" != "${EXT_IP}" ]; then
+    /app/provider/${DDNS_PROVIDER}/update
+  else
+    echo No update required.
+  fi
 }

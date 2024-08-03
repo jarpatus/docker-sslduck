@@ -22,10 +22,10 @@ print('Response:', response)
 
 # Update A record(s)
 for id in response:
-  print('Update', os.getenv('OVH_SUBDOMAIN')+'.'+os.getenv('OVH_ZONE'), 'A record', id, 'IP:', os.getenv('IP'))
+  print('Update', os.getenv('OVH_SUBDOMAIN')+'.'+os.getenv('OVH_ZONE'), 'A record', id, 'IP:', os.getenv('EXT_IP'))
   response = client.put('/domain/zone/'+os.getenv('OVH_ZONE')+'/record/'+str(id),
     subDomain=os.getenv('OVH_SUBDOMAIN'),
-    target=os.getenv('IP'),
+    target=os.getenv('EXT_IP'),
     ttl=60
   )
   print('Response:', response)

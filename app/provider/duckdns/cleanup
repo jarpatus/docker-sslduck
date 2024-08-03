@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Delete challenge record
-echo Delete ${DUCKDNS_DOMAIN} challenge record
-CMD="curl --silent https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}&clear=true"
+echo Delete ${DDNS_DOMAIN} challenge record
+CMD="curl --silent https://www.duckdns.org/update?domains=${DDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}&clear=true"
 RES=`${CMD}`
 echo Command: ${CMD}
 echo Response: ${RES}

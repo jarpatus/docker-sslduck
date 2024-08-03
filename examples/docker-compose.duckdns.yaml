@@ -13,7 +13,7 @@ services:
       - UID=1234
       - GID=1234
       - DDNS_PROVIDER=duckdns
-      - DUCKDNS_DOMAIN=x.duckdns.org
+      - DDNS_DOMAIN=x.duckdns.org
       - DUCKDNS_TOKEN=x
       - LETSENCRYPT_DOMAIN=x.duckdns.org
     network_mode: bridge

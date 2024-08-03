@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Update challenge record
-echo Create ${DUCKDNS_DOMAIN} challenge record: ${CERTBOT_VALIDATION}
-CMD="curl --silent https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}"
+echo Create ${DDNS_DOMAIN} challenge record: ${CERTBOT_VALIDATION}
+CMD="curl --silent https://www.duckdns.org/update?domains=${DDNS_DOMAIN}&token=${DUCKDNS_TOKEN}&txt=${CERTBOT_VALIDATION}"
 RES=`${CMD}`
 echo Command: ${CMD}
 echo Response: ${RES}

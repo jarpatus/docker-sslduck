@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 # Add packages
-RUN apk add --no-cache certbot curl py3-pip
+RUN apk add --no-cache bind-tools certbot curl py3-pip
 
 # Copy application files to /app
 COPY ./app /app
