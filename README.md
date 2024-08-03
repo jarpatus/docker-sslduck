@@ -57,8 +57,8 @@ Optional mounts:
 ## OVH specific instructions
 * Create A record for your subdomain to desired zone from OVH control panel using short TTL. i.e: x.example.com. 60 A x.x.x.x
 * Create application token for container (https://ca.api.ovh.com/createToken/) and use shown values for OVH_ environment variables. Following rights are needed:
-** GET /domain/zone/{zoneName}/record
-** POST /domain/zone/{zoneName}/record
-** DELETE /domain/zone/{zoneName}/record/*
-** PUT /domain/zone/{zoneName}/record/*
-** POST /domain/zone/{zoneName}/refresh
+  * GET /domain/zone/{zoneName}/record
+  * POST /domain/zone/{zoneName}/record
+  * DELETE /domain/zone/{zoneName}/record/*
+  * PUT /domain/zone/{zoneName}/record/*
+  * POST /domain/zone/{zoneName}/refresh
