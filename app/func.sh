@@ -1,5 +1,10 @@
 #!/bin/sh
 
+on_term() {
+  echo Got sigterm...
+  exit 0
+}
+
 get_cert() {
   certbot certonly \
     --manual \
