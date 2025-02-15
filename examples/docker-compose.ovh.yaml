@@ -4,14 +4,15 @@ services:
   sslduck:
     build:
       context: src
+      args:
+        - UID=8443
+        - GID=8443
     container_name: sslduck
     volumes:
       - ./data:/etc/letsencrypt
       - ./log:/var/log/letsencrypt
     restart: unless-stopped
     environment:
-      - UID=1234
-      - GID=1234
       - DDNS_PROVIDER=ovh
       - DDNS_DOMAIN=subdomain.example.com
       - OVH_API_SERVER=ovh-xx
