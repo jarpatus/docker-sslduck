@@ -10,7 +10,7 @@ Following DNS providers are supported:
 # Compose file
 
 ## Example
-See https://github.com/jarpatus/docker-sslduck/tree/main/examples .
+See https://github.com/jarpatus/docker-sslduck-rootless/tree/main/examples .
 
 ## Environment
 Mandatory environment variables:
