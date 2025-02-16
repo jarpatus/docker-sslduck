@@ -1,21 +1,18 @@
-# docker-sslduck
+# Sslduck rootless
 Automatically update IP address of your domain (aka Dynamic DNS) and renew Let's Encrypt certificate for it using DNS-01 challenge. 
 There are dozens of docker images for doing both jobs separately but found none doing both using single container 
 (I guess it's good practice to have one container for one job but for me personally both of these jobs are so closely coupled that I want single container). 
+
 Following DNS providers are supported:
 * Duck DNS
 * OVH
 
-# Build
-To build image, clone repository to src/, copy example docker-compose.yaml to cwd and build:
+# Compose file
 
-```
-git clone https://github.com/jarpatus/docker-sslduck.git src
-cp src/examples/docker-compose.yaml .
-docker-compose build
-```
+## Example
+See https://github.com/jarpatus/docker-sslduck/tree/main/examples .
 
-## Environment variables
+## Environment
 Mandatory environment variables:
 * ```DDNS_PROVIDER``` - DNS provider: duckdns, ovh.
 * ```DDNS_DOMAIN``` - Fully qualified domain name
